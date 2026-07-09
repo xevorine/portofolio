@@ -16,7 +16,7 @@ export const projects: Project[] = [
     category: "AI Automation",
     description: "AI-powered WhatsApp moderation system that detects toxic messages, gives progressive warnings, stores violation data, shows leaderboard rankings, and supports auto-kick after repeated violations.",
     tech: ["n8n", "WAHA", "Gemini", "MySQL", "WhatsApp API"],
-    link: "https://github.com/username"
+    link: "https://github.com/xevorine/chatbot_whatsapp"
   },
   {
     id: "web-kasir",
@@ -25,7 +25,7 @@ export const projects: Project[] = [
     category: "Web Application",
     description: "Laravel-based cashier and financial management system for an aluminium and glass furniture business. It calculates prices, records transactions, tracks income and expenses, and calculates profit automatically.",
     tech: ["Laravel", "PHP", "MySQL", "JavaScript"],
-    link: "https://github.com/username"
+    link: "https://github.com/xevorine"
   },
   {
     id: "image-classification",
@@ -34,7 +34,7 @@ export const projects: Project[] = [
     category: "Machine Learning",
     description: "Image classification project comparing conventional machine learning and deep learning using preprocessing, augmentation, CNN training, and model evaluation.",
     tech: ["Python", "TensorFlow", "Keras", "CNN"],
-    link: "https://github.com/username"
+    link: "https://github.com/xevorine/id-multi-label-hate-speech-and-abusive-language-detection"
   },
   {
     id: "game-database",
@@ -43,7 +43,7 @@ export const projects: Project[] = [
     category: "Database Design",
     description: "Relational database design for a farming RPG game system with item dictionaries, player data, inventory, quests, mini-games, NPC relationships, and progression structures.",
     tech: ["SQL", "MySQL", "ERD", "PlantUML", "Mermaid"],
-    link: "https://github.com/username"
+    link: "https://github.com/Xerillia/tournament-manager"
   },
   {
     id: "cc-studio",
@@ -52,6 +52,6 @@ export const projects: Project[] = [
     category: "Frontend / UI Design",
     description: "Clean landing page concept for a creative studio with service sections, project showcase, responsive layout, and polished visual hierarchy.",
     tech: ["HTML", "CSS", "JavaScript", "Tailwind CSS"],
-    link: "https://github.com/username"
+    link: "https://github.com/CatandCStudio-dev/WebSitePorto"
   }
 ];

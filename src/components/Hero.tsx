@@ -182,7 +182,7 @@ export const Hero: React.FC = () => {
             </Magnetic>
             <Magnetic>
               <a
-                href="https://github.com/username"
+                href="https://github.com/xevorine"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-3 rounded-full border border-border-warm bg-sec-bg/50 hover:bg-soft-panel hover:text-accent-main text-text-secondary text-sm transition-all duration-300"

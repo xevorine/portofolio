@@ -51,7 +51,7 @@ export const Contact: React.FC = () => {
         <AnimatedSection delay={0.3} className="flex flex-wrap items-center justify-center gap-8 md:gap-12 font-ui text-sm md:text-base">
           <Magnetic>
             <a
-              href="mailto:email@example.com"
+              href="mailto:bivanpramudyto17@gmail.com"
               className="flex items-center gap-1.5 text-text-secondary hover:text-accent-main transition-colors duration-200 link-underlined py-1"
             >
               Email
@@ -63,7 +63,7 @@ export const Contact: React.FC = () => {
 
           <Magnetic>
             <a
-              href="https://linkedin.com/in/username"
+              href="https://www.linkedin.com/in/bivan-pramudyto-a176ba245/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-text-secondary hover:text-accent-main transition-colors duration-200 link-underlined py-1"
@@ -77,7 +77,7 @@ export const Contact: React.FC = () => {
 
           <Magnetic>
             <a
-              href="https://github.com/username"
+              href="https://github.com/xevorine"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-text-secondary hover:text-accent-main transition-colors duration-200 link-underlined py-1"

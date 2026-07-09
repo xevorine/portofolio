@@ -96,7 +96,7 @@ export const Navbar: React.FC = () => {
 
           {/* GitHub link */}
           <a
-            href="https://github.com/username"
+            href="https://github.com/xevorine"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-0.5 text-xs md:text-sm text-text-muted hover:text-accent-main transition-colors duration-200"
