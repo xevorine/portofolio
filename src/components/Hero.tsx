@@ -216,9 +216,9 @@ export const Hero: React.FC = () => {
 
           {/* Floating interactive labels */}
           <FloatingWord text="WhatsApp Bot" x="12%" y="15%" delay={0.1} duration={5.5} colorClass="bg-elevated-panel border-accent-fresh/30 text-accent-fresh" />
-          <FloatingWord text="Laravel Cashier" x="48%" y="22%" delay={0.3} duration={6.2} />
-          <FloatingWord text="CNN Model" x="15%" y="45%" delay={0.5} duration={5.8} colorClass="bg-elevated-panel border-accent-cool/30 text-accent-cool" />
-          <FloatingWord text="RPG Database" x="52%" y="50%" delay={0.2} duration={6.8} />
+          <FloatingWord text="Web Chatbot" x="48%" y="22%" delay={0.3} duration={6.2} />
+          <FloatingWord text="Hate Speech NLP" x="15%" y="45%" delay={0.5} duration={5.8} colorClass="bg-elevated-panel border-accent-cool/30 text-accent-cool" />
+          <FloatingWord text="Tournament DB" x="52%" y="50%" delay={0.2} duration={6.8} />
           <FloatingWord text="C&C Studio" x="25%" y="78%" delay={0.6} duration={5.2} />
           <FloatingWord text="MySQL" x="72%" y="75%" delay={0.4} duration={6.5} />
           <FloatingWord text="n8n" x="75%" y="38%" delay={0.7} duration={5.9} colorClass="bg-elevated-panel border-accent-main/30 text-accent-main" />

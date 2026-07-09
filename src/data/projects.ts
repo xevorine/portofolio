@@ -19,30 +19,30 @@ export const projects: Project[] = [
     link: "https://github.com/xevorine/chatbot_whatsapp"
   },
   {
-    id: "web-kasir",
+    id: "website-chatbot",
     number: "02",
-    title: "Web Kasir Mebel Aluminium & Kaca",
-    category: "Web Application",
-    description: "Laravel-based cashier and financial management system for an aluminium and glass furniture business. It calculates prices, records transactions, tracks income and expenses, and calculates profit automatically.",
-    tech: ["Laravel", "PHP", "MySQL", "JavaScript"],
-    link: "https://github.com/xevorine"
+    title: "Website Chatbot",
+    category: "AI / Web Application",
+    description: "A web-based chatbot system integrated into websites to handle customer queries, automate responses, and improve user engagement through smart conversational flows.",
+    tech: ["HTML", "CSS", "JavaScript", "Chatbot API"],
+    link: "https://github.com/xevorine/website-chatbot"
   },
   {
-    id: "image-classification",
+    id: "hate-speech-detection",
     number: "03",
-    title: "Machine Learning Image Classification",
-    category: "Machine Learning",
-    description: "Image classification project comparing conventional machine learning and deep learning using preprocessing, augmentation, CNN training, and model evaluation.",
-    tech: ["Python", "TensorFlow", "Keras", "CNN"],
+    title: "ID Multi-Label Hate Speech & Abusive Detection",
+    category: "Machine Learning / NLP",
+    description: "Machine learning model to detect and classify Indonesian hate speech and abusive language on social media into multiple labels, using advanced NLP preprocessing and model training.",
+    tech: ["Python", "Scikit-Learn", "NLP", "Machine Learning"],
     link: "https://github.com/xevorine/id-multi-label-hate-speech-and-abusive-language-detection"
   },
   {
-    id: "game-database",
+    id: "tournament-manager",
     number: "04",
-    title: "Game Database / ERD Farming RPG",
+    title: "Tournament Manager Database",
     category: "Database Design",
-    description: "Relational database design for a farming RPG game system with item dictionaries, player data, inventory, quests, mini-games, NPC relationships, and progression structures.",
-    tech: ["SQL", "MySQL", "ERD", "PlantUML", "Mermaid"],
+    description: "Relational database and backend design for a tournament management system handling player registration, team brackets, match scheduling, and leaderboard progression.",
+    tech: ["SQL", "MySQL", "ERD", "Database Design"],
     link: "https://github.com/Xerillia/tournament-manager"
   },
   {
