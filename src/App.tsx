@@ -10,6 +10,8 @@ import { Footer } from './components/Footer';
 import { AccentSwitcher } from './components/AccentSwitcher';
 import { Marquee } from './components/Marquee';
 import { Preloader } from './components/Preloader';
+import { Project } from './data/projects';
+import { ProjectModal } from './components/ProjectModal';
 import Lenis from 'lenis';
 
 function App() {
@@ -47,6 +49,8 @@ function App() {
     };
   }, []);
 
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
   return (
     <div className="relative min-h-screen bg-main-bg text-text-primary selection:bg-accent-main selection:text-main-bg">
       {/* Preloader Overlay */}
@@ -67,7 +71,7 @@ function App() {
 
       {/* Core Scenes */}
       <main>
-        <Hero />
+        <Hero onSelectProject={setSelectedProject} />
 
         {/* Infinite Text Marquee */}
         <Marquee
@@ -81,7 +85,7 @@ function App() {
           speed={30}
         />
 
-        <SelectedWork />
+        <SelectedWork onSelectProject={setSelectedProject} />
         <About />
         <Tools />
         <Contact />
@@ -89,6 +93,16 @@ function App() {
 
       {/* Footer */}
       <Footer />
+
+      {/* Project Modal */}
+      <AnimatePresence>
+        {selectedProject && (
+          <ProjectModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }

@@ -54,16 +54,5 @@ export const projects: Project[] = [
     link: "https://github.com/Xerillia/tournament-manager",
     challenge: "Modeling complex recursive relational schemas for multi-stage tournament brackets (single/double elimination, round robin) while maintaining referential integrity during bulk updates.",
     solution: "Designed a clean, normalized database structure with strict indexes. Wrote detailed stored procedures and triggers to automatically compute bracket wins, advance players, and update global leaderboards dynamically."
-  },
-  {
-    id: "cc-studio",
-    number: "05",
-    title: "C&C Studio Landing Page",
-    category: "Frontend / UI Design",
-    description: "Clean landing page concept for a creative studio with service sections, project showcase, responsive layout, and polished visual hierarchy.",
-    tech: ["HTML", "CSS", "JavaScript", "Tailwind CSS"],
-    link: "https://github.com/CatandCStudio-dev/WebSitePorto",
-    challenge: "Creating a highly visual creative showcase that performs well on low-end devices and respects fluid typography guidelines.",
-    solution: "Built responsive layouts using modern Tailwind grid patterns. Optimized image loading via lazy loading and CSS compression to keep initial page load speed fast and animations buttery."
   }
 ];

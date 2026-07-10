@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { projects, Project } from '../data/projects';
 import { AnimatedSection } from './AnimatedSection';
-import { ProjectModal } from './ProjectModal';
-import { AnimatePresence } from 'framer-motion';
 
-export const SelectedWork: React.FC = () => {
+export const SelectedWork: React.FC<{ onSelectProject: (project: Project) => void }> = ({ onSelectProject }) => {
   const featuredProject = projects[0];
   const listProjects = projects.slice(1);
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
     <section id="work" className="py-24 px-4 md:px-8 bg-sec-bg relative">
@@ -29,7 +26,7 @@ export const SelectedWork: React.FC = () => {
         {/* Featured Project */}
         <AnimatedSection className="mb-20">
           <div
-            onClick={() => setSelectedProject(featuredProject)}
+            onClick={() => onSelectProject(featuredProject)}
             className="card-hover-glow group relative rounded-2xl border border-border-warm bg-soft-panel overflow-hidden shadow-xl cursor-pointer"
           >
             {/* Visual background details */}
@@ -63,7 +60,7 @@ export const SelectedWork: React.FC = () => {
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      setSelectedProject(featuredProject);
+                      onSelectProject(featuredProject);
                     }}
                     className="inline-flex items-center gap-1.5 text-sm font-ui text-accent-main hover:text-accent-soft transition-colors duration-200 font-medium group/link link-underlined cursor-pointer"
                   >
@@ -118,7 +115,7 @@ export const SelectedWork: React.FC = () => {
           {listProjects.map((project, idx) => (
             <AnimatedSection key={project.id} delay={idx * 0.08}>
               <div
-                onClick={() => setSelectedProject(project)}
+                onClick={() => onSelectProject(project)}
                 className="group relative border-b border-border-warm py-8 flex flex-col md:flex-row md:items-center justify-between gap-6 transition-all duration-300 hover:border-accent-main/30 cursor-pointer"
               >
                 {/* Row highlight */}
@@ -155,7 +152,7 @@ export const SelectedWork: React.FC = () => {
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      setSelectedProject(project);
+                      onSelectProject(project);
                     }}
                     className="inline-flex items-center gap-1 text-xs font-ui text-text-muted hover:text-accent-main transition-colors duration-200 group/link cursor-pointer"
                   >
@@ -176,16 +173,6 @@ export const SelectedWork: React.FC = () => {
         </div>
 
       </div>
-
-      {/* Project Modal */}
-      <AnimatePresence>
-        {selectedProject && (
-          <ProjectModal
-            project={selectedProject}
-            onClose={() => setSelectedProject(null)}
-          />
-        )}
-      </AnimatePresence>
     </section>
   );
 };

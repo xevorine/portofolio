@@ -1,19 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 import { Magnetic } from './Magnetic';
+import { Project, projects } from '../data/projects';
+
 const WORDS = [
-  { text: 'WhatsApp Bot', x: '12%', y: '15%', colorClass: 'border-accent-fresh/30 text-accent-fresh bg-elevated-panel' },
-  { text: 'Web Chatbot', x: '48%', y: '22%', colorClass: 'border-border-warm bg-soft-panel text-text-secondary' },
-  { text: 'Hate Speech NLP', x: '15%', y: '45%', colorClass: 'border-accent-cool/30 text-accent-cool bg-elevated-panel' },
-  { text: 'Tournament DB', x: '52%', y: '50%', colorClass: 'border-border-warm bg-soft-panel text-text-secondary' },
-  { text: 'C&C Studio', x: '25%', y: '78%', colorClass: 'border-border-warm bg-soft-panel text-text-secondary' },
-  { text: 'MySQL', x: '72%', y: '75%', colorClass: 'border-border-warm bg-soft-panel text-text-secondary' },
-  { text: 'n8n', x: '75%', y: '38%', colorClass: 'border-accent-main/30 text-accent-main bg-elevated-panel' },
-  { text: 'Gemini', x: '45%', y: '70%', colorClass: 'border-border-warm bg-soft-panel text-text-secondary' },
+  { text: 'WhatsApp Bot', x: '12%', y: '15%', delay: 0.1, duration: 5.5, colorClass: 'border-accent-fresh/30 text-accent-fresh bg-elevated-panel cursor-pointer hover:border-accent-fresh/70', projectId: 'whatsapp-bot' },
+  { text: 'Web Chatbot', x: '48%', y: '22%', delay: 0.3, duration: 6.2, colorClass: 'border-border-warm bg-soft-panel text-text-secondary cursor-pointer hover:border-accent-main/50', projectId: 'website-chatbot' },
+  { text: 'Hate Speech NLP', x: '15%', y: '45%', delay: 0.5, duration: 5.8, colorClass: 'border-accent-cool/30 text-accent-cool bg-elevated-panel cursor-pointer hover:border-accent-cool/70', projectId: 'hate-speech-detection' },
+  { text: 'Tournament DB', x: '52%', y: '50%', delay: 0.2, duration: 6.8, colorClass: 'border-border-warm bg-soft-panel text-text-secondary cursor-pointer hover:border-accent-main/50', projectId: 'tournament-manager' },
+  { text: 'MySQL', x: '72%', y: '75%', delay: 0.4, duration: 6.5, colorClass: 'border-border-warm bg-soft-panel text-text-secondary cursor-grab active:cursor-grabbing' },
+  { text: 'n8n', x: '75%', y: '38%', delay: 0.7, duration: 5.9, colorClass: 'border-accent-main/30 text-accent-main bg-elevated-panel cursor-grab active:cursor-grabbing', projectId: 'whatsapp-bot' }, // n8n relates to whatsapp bot too
+  { text: 'Gemini', x: '45%', y: '70%', delay: 0.8, duration: 6.4, colorClass: 'border-border-warm bg-soft-panel text-text-secondary cursor-grab active:cursor-grabbing' },
 ];
 
 const titleWords = ['Building', 'practical', 'systems', 'with'];
 
-export const Hero: React.FC = () => {
+export const Hero: React.FC<{ onSelectProject: (project: Project) => void }> = ({ onSelectProject }) => {
   const [visible, setVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -57,63 +59,63 @@ export const Hero: React.FC = () => {
             {titleWords.map((word, i) => (
               <span
                 key={i}
-                className="inline-block"
                 style={{
                   opacity: visible ? 1 : 0,
-                  transform: visible ? 'translateY(0)' : 'translateY(22px)',
-                  transition: `opacity 0.75s cubic-bezier(0.16,1,0.3,1) ${0.15 + i * 0.08}s, transform 0.75s cubic-bezier(0.16,1,0.3,1) ${0.15 + i * 0.08}s`,
+                  transform: visible ? 'translateY(0)' : 'translateY(16px)',
+                  transition: `opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + i * 0.06}s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + i * 0.06}s`,
                 }}
+                className="inline-block"
               >
                 {word}
               </span>
             ))}
             <span
-              className="inline-block"
               style={{
                 opacity: visible ? 1 : 0,
-                transform: visible ? 'translateY(0)' : 'translateY(22px)',
-                transition: `opacity 0.75s cubic-bezier(0.16,1,0.3,1) ${0.15 + 4 * 0.08}s, transform 0.75s cubic-bezier(0.16,1,0.3,1) ${0.15 + 4 * 0.08}s`,
+                transform: visible ? 'translateY(0)' : 'translateY(16px)',
+                transition: `opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + titleWords.length * 0.06}s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + titleWords.length * 0.06}s`,
               }}
+              className="inline-block text-accent-main"
             >
-              <span className="text-accent-main">web</span>,
+              web,
             </span>
             <span
-              className="inline-block"
               style={{
                 opacity: visible ? 1 : 0,
-                transform: visible ? 'translateY(0)' : 'translateY(22px)',
-                transition: `opacity 0.75s cubic-bezier(0.16,1,0.3,1) ${0.15 + 5 * 0.08}s, transform 0.75s cubic-bezier(0.16,1,0.3,1) ${0.15 + 5 * 0.08}s`,
+                transform: visible ? 'translateY(0)' : 'translateY(16px)',
+                transition: `opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + (titleWords.length + 1) * 0.06}s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + (titleWords.length + 1) * 0.06}s`,
               }}
+              className="inline-block text-accent-soft"
             >
-              <span className="text-accent-soft">automation</span>,
+              automation,
             </span>
             <span
-              className="inline-block"
               style={{
                 opacity: visible ? 1 : 0,
-                transform: visible ? 'translateY(0)' : 'translateY(22px)',
-                transition: `opacity 0.75s cubic-bezier(0.16,1,0.3,1) ${0.15 + 6 * 0.08}s, transform 0.75s cubic-bezier(0.16,1,0.3,1) ${0.15 + 6 * 0.08}s`,
+                transform: visible ? 'translateY(0)' : 'translateY(16px)',
+                transition: `opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + (titleWords.length + 2) * 0.06}s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + (titleWords.length + 2) * 0.06}s`,
               }}
+              className="inline-block text-text-primary"
             >
               data,
             </span>
             <span
-              className="inline-block"
               style={{
                 opacity: visible ? 1 : 0,
-                transform: visible ? 'translateY(0)' : 'translateY(22px)',
-                transition: `opacity 0.75s cubic-bezier(0.16,1,0.3,1) ${0.15 + 7 * 0.08}s, transform 0.75s cubic-bezier(0.16,1,0.3,1) ${0.15 + 7 * 0.08}s`,
+                transform: visible ? 'translateY(0)' : 'translateY(16px)',
+                transition: `opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + (titleWords.length + 3) * 0.06}s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + (titleWords.length + 3) * 0.06}s`,
               }}
+              className="inline-block text-text-primary"
             >
               and
             </span>
             <span
-              className="inline-block text-accent-fresh"
               style={{
                 opacity: visible ? 1 : 0,
-                transform: visible ? 'translateY(0)' : 'translateY(22px)',
-                transition: `opacity 0.75s cubic-bezier(0.16,1,0.3,1) ${0.15 + 8 * 0.08}s, transform 0.75s cubic-bezier(0.16,1,0.3,1) ${0.15 + 8 * 0.08}s`,
+                transform: visible ? 'translateY(0)' : 'translateY(16px)',
+                transition: `opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + (titleWords.length + 4) * 0.06}s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + (titleWords.length + 4) * 0.06}s`,
               }}
+              className="inline-block text-accent-fresh"
             >
               AI.
             </span>
@@ -123,20 +125,20 @@ export const Hero: React.FC = () => {
           <p
             style={{
               opacity: visible ? 1 : 0,
-              transform: visible ? 'translateY(0)' : 'translateY(18px)',
-              transition: 'opacity 0.8s cubic-bezier(0.16,1,0.3,1) 0.6s, transform 0.8s cubic-bezier(0.16,1,0.3,1) 0.6s',
+              transform: visible ? 'translateY(0)' : 'translateY(14px)',
+              transition: 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s',
             }}
             className="text-base md:text-lg text-text-secondary leading-relaxed max-w-xl mb-10 font-ui"
           >
-            I'm an Informatics student who builds real-world projects — from WhatsApp moderation bots and cashier systems to machine learning experiments and database design.
+            I’m an Informatics student who builds real-world projects — from WhatsApp moderation bots and cashier systems to machine learning experiments and database design.
           </p>
 
           {/* Buttons */}
           <div
             style={{
               opacity: visible ? 1 : 0,
-              transform: visible ? 'translateY(0)' : 'translateY(12px)',
-              transition: 'opacity 0.8s cubic-bezier(0.16,1,0.3,1) 0.7s, transform 0.8s cubic-bezier(0.16,1,0.3,1) 0.7s',
+              transform: visible ? 'translateY(0)' : 'translateY(10px)',
+              transition: 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s',
             }}
             className="flex flex-wrap items-center gap-4 font-ui"
           >
@@ -161,7 +163,7 @@ export const Hero: React.FC = () => {
           </div>
         </div>
 
-        {/* Right Column: Floating Labels — CSS only */}
+        {/* Right Column: Floating Labels — Interactive Dragging and Hovering */}
         <div className="lg:col-span-5 h-[350px] md:h-[450px] relative w-full rounded-2xl border border-border-warm bg-sec-bg/25 backdrop-blur-[1px] overflow-hidden shadow-inner shadow-white/5">
           <svg className="absolute inset-0 w-full h-full opacity-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
             <path d="M 50,-50 C 150,150 50,250 450,450" fill="none" stroke="var(--color-text-muted)" strokeWidth="0.75" strokeDasharray="4 4" />
@@ -170,24 +172,47 @@ export const Hero: React.FC = () => {
             <circle cx="300" cy="100" r="2" fill="var(--color-accent-main)" opacity="0.5" />
           </svg>
 
-          {WORDS.map((word, i) => (
-            <span
+          {WORDS.map((word) => (
+            <motion.div
               key={word.text}
               style={{
                 left: word.x,
                 top: word.y,
                 position: 'absolute',
-                animationDelay: `${i * 0.4}s`,
               }}
-              className={`px-3 py-1.5 rounded-full border text-xs md:text-sm font-ui backdrop-blur-sm select-none shadow-md shadow-black/10 animate-float-${(i % 3) + 1} transition-colors duration-300 ${word.colorClass}`}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                y: [0, -10, 5, 0],
+                x: [0, 8, -5, 0]
+              }}
+              transition={{
+                opacity: { duration: 1, delay: word.delay },
+                scale: { duration: 1, delay: word.delay },
+                y: { duration: word.duration, repeat: Infinity, ease: "easeInOut", delay: word.delay },
+                x: { duration: word.duration + 1.5, repeat: Infinity, ease: "easeInOut", delay: word.delay }
+              }}
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.94 }}
+              drag
+              dragConstraints={{ left: -50, right: 50, top: -50, bottom: 50 }}
+              dragElastic={0.45}
+              onClick={() => {
+                if (word.projectId) {
+                  const proj = projects.find(p => p.id === word.projectId);
+                  if (proj) onSelectProject(proj);
+                }
+              }}
+              className={`px-3 py-1.5 rounded-full border text-xs md:text-sm font-ui backdrop-blur-sm select-none shadow-md shadow-black/10 transition-colors duration-300 cursor-grab active:cursor-grabbing ${word.colorClass}`}
             >
               {word.text}
-            </span>
+            </motion.div>
           ))}
 
           <div className="absolute bottom-4 left-4 flex items-center gap-1.5 px-2.5 py-1 rounded bg-main-bg/85 border border-border-warm text-[10px] text-text-muted font-ui pointer-events-none">
             <span className="w-1.5 h-1.5 rounded-full bg-accent-main animate-pulse" />
-            Floating labels
+            Click project / Drag to interact
           </div>
         </div>
 
