@@ -159,18 +159,6 @@ export const Hero: React.FC = () => {
               </a>
             </Magnetic>
           </div>
-
-          {/* Scroll Down Indicator */}
-          <div
-            style={{
-              opacity: visible ? 1 : 0,
-              transition: 'opacity 0.8s ease 1.2s',
-            }}
-            className="mt-10 flex flex-col items-start gap-1.5"
-          >
-            <span className="text-[10px] uppercase tracking-widest text-text-muted font-ui">Scroll</span>
-            <div className="w-[1px] h-8 bg-gradient-to-b from-accent-main/60 to-transparent animate-scroll-line" />
-          </div>
         </div>
 
         {/* Right Column: Floating Labels — CSS only */}
