@@ -8,7 +8,6 @@ import { About } from './components/About';
 import { Tools } from './components/Tools';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
-import { CustomCursor } from './components/CustomCursor';
 import { AccentSwitcher } from './components/AccentSwitcher';
 import { Marquee } from './components/Marquee';
 import { Preloader } from './components/Preloader';
@@ -58,9 +57,6 @@ function App() {
       {/* Grain Texture Overlay */}
       <div className="grain-overlay" />
       
-      {/* Custom Interactive Cursor */}
-      <CustomCursor />
-
       {/* Floating Accent Color Switcher */}
       <AccentSwitcher />
 
