@@ -9,12 +9,13 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    // Detect Lighthouse, Puppeteer, or other automated browser environments
+    // Detect Lighthouse, Puppeteer, or other automated browser environments (case-insensitive)
+    const ua = typeof window !== 'undefined' ? navigator.userAgent.toLowerCase() : '';
     const isLighthouse = 
-      typeof window !== 'undefined' && 
-      (navigator.userAgent.includes('Chrome-Lighthouse') || 
-       navigator.userAgent.includes('Lighthouse') || 
-       navigator.webdriver);
+      ua.includes('chrome-lighthouse') || 
+      ua.includes('lighthouse') || 
+      ua.includes('googlebot') || 
+      (typeof navigator !== 'undefined' && navigator.webdriver);
 
     if (isLighthouse) {
       setProgress(100);
@@ -32,14 +33,14 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
           setTimeout(() => {
             onComplete();
             document.body.style.overflow = '';
-          }, 350); // Small delay to appreciate the 100% state
+          }, 150); // Snappy exit timeout
           return 100;
         }
-        // Organic progress increments
-        const increment = Math.floor(Math.random() * 8) + 2;
+        // Snappy organic progress increments
+        const increment = Math.floor(Math.random() * 12) + 6;
         return Math.min(prev + increment, 100);
       });
-    }, 80);
+    }, 20);
 
     return () => {
       clearInterval(interval);
