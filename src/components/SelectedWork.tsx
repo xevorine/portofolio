@@ -1,11 +1,14 @@
-import React from 'react';
-import { motion, useMotionValue, useMotionTemplate, useTransform, useSpring } from 'framer-motion';
-import { projects } from '../data/projects';
+import React, { useState } from 'react';
+import { motion, useMotionValue, useMotionTemplate, useTransform, useSpring, AnimatePresence } from 'framer-motion';
+import { projects, Project } from '../data/projects';
 import { AnimatedSection } from './AnimatedSection';
+import { ProjectModal } from './ProjectModal';
 
 export const SelectedWork: React.FC = () => {
   const featuredProject = projects[0];
   const listProjects = projects.slice(1);
+
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -58,13 +61,14 @@ export const SelectedWork: React.FC = () => {
           <motion.div 
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
+            onClick={() => setSelectedProject(featuredProject)}
             style={{
               rotateX,
               rotateY,
               transformStyle: "preserve-3d",
               perspective: 1000,
             }}
-            className="group relative rounded-2xl border border-border-warm bg-soft-panel overflow-hidden transition-colors duration-300 hover:border-accent-main/40 shadow-xl"
+            className="group relative rounded-2xl border border-border-warm bg-soft-panel overflow-hidden transition-colors duration-300 hover:border-accent-main/40 shadow-xl cursor-pointer"
           >
             {/* Mouse Spotlight Overlay */}
             <motion.div
@@ -109,11 +113,12 @@ export const SelectedWork: React.FC = () => {
                     {featuredProject.tech.join(" • ")}
                   </div>
                   
-                  <a
-                    href={featuredProject.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm font-ui text-accent-main hover:text-accent-soft transition-colors duration-200 font-medium group/link link-underlined"
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation(); // Avoid double execution if bubbling to card
+                      setSelectedProject(featuredProject);
+                    }}
+                    className="inline-flex items-center gap-1.5 text-sm font-ui text-accent-main hover:text-accent-soft transition-colors duration-200 font-medium group/link link-underlined cursor-pointer"
                   >
                     View Project
                     <svg
@@ -124,7 +129,7 @@ export const SelectedWork: React.FC = () => {
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
-                  </a>
+                  </button>
                 </div>
               </div>
 
@@ -174,11 +179,12 @@ export const SelectedWork: React.FC = () => {
               <motion.div
                 initial="initial"
                 whileHover="hover"
+                onClick={() => setSelectedProject(project)}
                 variants={{
                   initial: {},
                   hover: {}
                 }}
-                className="group relative border-b border-border-warm py-8 flex flex-col md:flex-row md:items-center justify-between gap-6 transition-all duration-300 hover:border-accent-main/30"
+                className="group relative border-b border-border-warm py-8 flex flex-col md:flex-row md:items-center justify-between gap-6 transition-all duration-300 hover:border-accent-main/30 cursor-pointer"
               >
                 {/* Warm highlight block behind row */}
                 <div className="absolute inset-x-[-16px] inset-y-1 bg-soft-panel/0 group-hover:bg-soft-panel/30 rounded-xl transition-all duration-300 -z-10" />
@@ -211,11 +217,12 @@ export const SelectedWork: React.FC = () => {
 
                 {/* Right side: Action Link */}
                 <div className="md:w-2/12 flex md:justify-end">
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs font-ui text-text-muted hover:text-accent-main transition-colors duration-200 group/link"
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedProject(project);
+                    }}
+                    className="inline-flex items-center gap-1 text-xs font-ui text-text-muted hover:text-accent-main transition-colors duration-200 group/link cursor-pointer"
                   >
                     View Project
                     <svg
@@ -226,7 +233,7 @@ export const SelectedWork: React.FC = () => {
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
-                  </a>
+                  </button>
                 </div>
 
               </motion.div>
@@ -235,6 +242,16 @@ export const SelectedWork: React.FC = () => {
         </div>
 
       </div>
+
+      {/* Project Case Study Modal */}
+      <AnimatePresence>
+        {selectedProject && (
+          <ProjectModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 };
