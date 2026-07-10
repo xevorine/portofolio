@@ -99,23 +99,52 @@ h1, h2, h3, h4, .font-display {
   transform-origin: bottom left;
 }
 
-/* Lenis smooth scrolling rules */
-html.lenis, html.lenis body {
-  height: auto;
+/* CSS @keyframes — replaces Framer Motion infinite animations */
+/* These run entirely on the GPU compositor thread, zero JS overhead */
+
+@keyframes blob-drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(60px, -40px) scale(1.15); }
+  66%       { transform: translate(-40px, 50px) scale(0.9); }
 }
 
-.lenis-smooth {
-  scroll-behavior: auto !important;
+@keyframes blob-drift-2 {
+  0%, 100% { transform: translate(0, 0); }
+  33%       { transform: translate(-50px, 50px); }
+  66%       { transform: translate(40px, -40px); }
 }
 
-.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
+@keyframes float-1 {
+  0%, 100% { transform: translate(0, 0); }
+  50%       { transform: translate(8px, -10px); }
 }
 
-.lenis-stopped {
-  overflow: hidden;
+@keyframes float-2 {
+  0%, 100% { transform: translate(0, 0); }
+  50%       { transform: translate(-6px, -8px); }
 }
 
-.lenis-scrolling iframe {
-  pointer-events: none;
+@keyframes float-3 {
+  0%, 100% { transform: translate(0, 0); }
+  50%       { transform: translate(5px, -12px); }
+}
+
+.animate-blob-drift-1 {
+  animation: blob-drift-1 20s ease-in-out infinite;
+}
+
+.animate-blob-drift-2 {
+  animation: blob-drift-2 24s ease-in-out infinite;
+}
+
+.animate-float-1 {
+  animation: float-1 5.5s ease-in-out infinite;
+}
+
+.animate-float-2 {
+  animation: float-2 6.5s ease-in-out infinite;
+}
+
+.animate-float-3 {
+  animation: float-3 5.8s ease-in-out infinite;
 }

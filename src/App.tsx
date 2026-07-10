@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import Lenis from 'lenis';
+import { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
@@ -16,34 +15,13 @@ function App() {
   const [isLoading, setIsLoading] = useState(() => {
     if (typeof window === 'undefined') return true;
     const ua = navigator.userAgent.toLowerCase();
-    const isLighthouse = 
-      ua.includes('chrome-lighthouse') || 
-      ua.includes('lighthouse') || 
-      ua.includes('googlebot') || 
+    const isLighthouse =
+      ua.includes('chrome-lighthouse') ||
+      ua.includes('lighthouse') ||
+      ua.includes('googlebot') ||
       navigator.webdriver;
     return !isLighthouse;
   });
-
-  useEffect(() => {
-    if (isLoading) return;
-
-    // Initialize Lenis smooth scroll
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    });
-
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    return () => {
-      lenis.destroy();
-    };
-  }, [isLoading]);
 
   return (
     <div className="relative min-h-screen bg-main-bg text-text-primary selection:bg-accent-main selection:text-main-bg">
@@ -56,26 +34,26 @@ function App() {
 
       {/* Grain Texture Overlay */}
       <div className="grain-overlay" />
-      
+
       {/* Floating Accent Color Switcher */}
       <AccentSwitcher />
 
       {/* Header Navigation */}
       <Navbar />
-      
+
       {/* Core Scenes */}
       <main>
         <Hero />
-        
+
         {/* Infinite Text Marquee */}
-        <Marquee 
+        <Marquee
           items={[
-            "Develop Web Systems", 
-            "Build WhatsApp Automation Bots", 
-            "Train CNN Image Classifiers", 
-            "Design Relational ERD Databases", 
-            "Integrate Gemini AI Layers"
-          ]} 
+            'Develop Web Systems',
+            'Build WhatsApp Automation Bots',
+            'Train CNN Image Classifiers',
+            'Design Relational ERD Databases',
+            'Integrate Gemini AI Layers'
+          ]}
           speed={30}
         />
 
@@ -84,7 +62,7 @@ function App() {
         <Tools />
         <Contact />
       </main>
-      
+
       {/* Footer */}
       <Footer />
     </div>
