@@ -27,12 +27,31 @@ export const SelectedWork: React.FC<{ onSelectProject: (project: Project) => voi
         <AnimatedSection className="mb-20">
           <div
             onClick={() => onSelectProject(featuredProject)}
-            className="card-hover-glow group relative rounded-2xl border border-border-warm bg-soft-panel overflow-hidden shadow-xl cursor-pointer"
+            className="card-hover-glow group relative rounded-2xl border border-border-warm bg-soft-panel/30 overflow-hidden shadow-xl cursor-pointer flex flex-col"
           >
-            {/* Visual background details */}
-            <div className="absolute top-0 right-0 w-80 h-80 bg-accent-fresh/5 rounded-full filter blur-3xl pointer-events-none" />
+            {/* Window header */}
+            <div className="flex items-center justify-between px-5 py-3 border-b border-border-warm/60 bg-elevated-panel/20 select-none shrink-0">
+              <div className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-[#EF4444]/80 inline-block" />
+                <span className="w-2 h-2 rounded-full bg-[#F59E0B]/80 inline-block" />
+                <span className="w-2 h-2 rounded-full bg-[#10B981]/80 inline-block" />
+              </div>
+              
+              {/* Active Tab */}
+              <div className="flex items-center gap-1.5 text-[10px] sm:text-xs text-text-secondary font-mono bg-main-bg/50 px-3 py-1 rounded border border-border-warm/30 -mb-3.5 mt-[-4px] relative z-10 border-b-transparent">
+                <span className="text-[#FF2D20] font-bold text-[8px]">PY</span>
+                <span>whatsapp_bot_mod.py</span>
+              </div>
+              
+              <div className="text-[10px] font-mono text-text-muted uppercase tracking-widest hidden sm:inline">
+                editor
+              </div>
+            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 p-6 md:p-10 items-center">
+            {/* Visual background details */}
+            <div className="absolute top-12 right-0 w-80 h-80 bg-accent-fresh/5 rounded-full filter blur-3xl pointer-events-none" />
+
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 p-6 md:p-10 items-center relative">
               {/* Content Part (Left) */}
               <div className="md:col-span-7 flex flex-col justify-between h-full">
                 <div>
@@ -46,15 +65,24 @@ export const SelectedWork: React.FC<{ onSelectProject: (project: Project) => voi
                     {featuredProject.title}
                   </h3>
 
-                  <p className="text-sm md:text-base text-text-secondary leading-relaxed mb-6 font-ui">
-                    {featuredProject.description}
-                  </p>
+                  {/* Description with Line Numbers */}
+                  <div className="flex font-mono text-xs md:text-sm leading-relaxed mb-6">
+                    <div className="text-text-muted/30 select-none text-right pr-3 border-r border-border-warm/40 mr-3 flex flex-col font-medium">
+                      <span>01</span>
+                      <span>02</span>
+                      <span>03</span>
+                      <span>04</span>
+                    </div>
+                    <p className="text-text-secondary font-ui flex-1 leading-relaxed">
+                      {featuredProject.description}
+                    </p>
+                  </div>
                 </div>
 
                 <div>
-                  <div className="text-xs text-text-muted mb-6 font-ui">
-                    <span className="text-accent-soft mr-2">Built with:</span>
-                    {featuredProject.tech.join(' • ')}
+                  <div className="text-xs text-text-muted mb-6 font-mono">
+                    <span className="text-accent-soft mr-2 font-bold font-ui">Built with:</span>
+                    <span className="text-text-secondary">{featuredProject.tech.join(' • ')}</span>
                   </div>
 
                   <button
@@ -78,7 +106,7 @@ export const SelectedWork: React.FC<{ onSelectProject: (project: Project) => voi
               </div>
 
               {/* Graphical Part (Right) */}
-              <div className="md:col-span-5 relative h-56 md:h-64 rounded-xl bg-main-bg/50 border border-border-warm overflow-hidden flex flex-col justify-center p-6 select-none">
+              <div className="md:col-span-5 relative h-56 md:h-64 rounded-xl bg-main-bg/50 border border-border-warm overflow-hidden flex flex-col justify-center p-6 select-none shadow-inner">
                 <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-accent-main via-transparent to-transparent pointer-events-none" />
 
                 <div className="space-y-4 relative z-10 font-ui text-[10px] md:text-xs">
@@ -112,64 +140,81 @@ export const SelectedWork: React.FC<{ onSelectProject: (project: Project) => voi
 
         {/* Regular Projects List */}
         <div className="space-y-0">
-          {listProjects.map((project, idx) => (
-            <AnimatedSection key={project.id} delay={idx * 0.08}>
-              <div
-                onClick={() => onSelectProject(project)}
-                className="group relative border-b border-border-warm py-8 flex flex-col md:flex-row md:items-center justify-between gap-6 transition-all duration-300 hover:border-accent-main/30 cursor-pointer"
-              >
-                {/* Row highlight */}
-                <div className="absolute inset-x-[-16px] inset-y-1 bg-soft-panel/0 group-hover:bg-soft-panel/30 rounded-xl transition-all duration-300 -z-10" />
+          {listProjects.map((project, idx) => {
+            const getProjectFilename = (id: string) => {
+              if (id === 'website-chatbot') return 'chatbot_widget.tsx';
+              if (id === 'hate-speech-detection') return 'nlp_classifier.py';
+              if (id === 'tournament-manager') return 'tournament_schema.sql';
+              return `${id}.json`;
+            };
+            const filename = getProjectFilename(project.id);
+            const ext = filename.split('.').pop() || 'json';
+            const extColor = ext === 'py' ? 'text-[#FF2D20]' : ext === 'tsx' ? 'text-accent-cool' : 'text-accent-main';
+            
+            return (
+              <AnimatedSection key={project.id} delay={idx * 0.08}>
+                <div
+                  onClick={() => onSelectProject(project)}
+                  className="group relative border-b border-border-warm py-8 flex flex-col md:flex-row md:items-center justify-between gap-6 transition-all duration-300 hover:border-accent-main/30 cursor-pointer"
+                >
+                  {/* Row highlight */}
+                  <div className="absolute inset-x-[-16px] inset-y-1 bg-soft-panel/0 group-hover:bg-soft-panel/30 rounded-xl transition-all duration-300 -z-10" />
 
-                {/* Left: Number, Title, Category */}
-                <div className="flex items-start gap-4 md:gap-8 md:w-5/12">
-                  <span className="font-display text-lg text-text-muted transition-colors duration-300 group-hover:text-accent-main">
-                    {project.number}
-                  </span>
-
-                  <div>
-                    <h4 className="text-xl text-text-primary font-display transition-transform duration-300 group-hover:translate-x-1.5 mb-1.5">
-                      {project.title}
-                    </h4>
-                    <span className="inline-block text-[11px] uppercase tracking-wider font-ui text-text-muted group-hover:text-accent-soft transition-colors duration-300">
-                      {project.category}
+                  {/* Left: Extension badge, file path, Title, Category */}
+                  <div className="flex items-start gap-4 md:gap-6 md:w-5/12">
+                    <span className={`font-mono text-[10px] ${extColor} bg-elevated-panel/60 border border-border-warm px-2 py-0.5 rounded uppercase tracking-wider select-none shrink-0 mt-1`}>
+                      {ext}
                     </span>
+
+                    <div>
+                      <div className="flex items-center gap-1.5 mb-1.5 select-none">
+                        <span className="font-mono text-[10px] text-text-muted/60">{`src/projects/${filename}`}</span>
+                      </div>
+                      
+                      <h4 className="text-xl text-text-primary font-display transition-transform duration-300 group-hover:translate-x-1.5 mb-1">
+                        {project.title}
+                      </h4>
+                      <span className="inline-block text-[11px] uppercase tracking-wider font-ui text-text-muted group-hover:text-accent-soft transition-colors duration-300">
+                        {project.category}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Middle: Description & Tech */}
+                  <div className="md:w-5/12 font-ui">
+                    <p className="text-xs md:text-sm text-text-secondary leading-relaxed mb-3">
+                      {project.description}
+                    </p>
+                    <p className="text-[11px] text-text-muted font-mono">
+                      <span className="text-accent-main mr-1.5">$</span>
+                      {project.tech.join(' · ')}
+                    </p>
+                  </div>
+
+                  {/* Right: Action Link */}
+                  <div className="md:w-2/12 flex md:justify-end">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectProject(project);
+                      }}
+                      className="inline-flex items-center gap-1 text-xs font-ui text-text-muted hover:text-accent-main transition-colors duration-200 group/link cursor-pointer"
+                    >
+                      View Project
+                      <svg
+                        className="w-3.5 h-3.5 transition-transform duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </button>
                   </div>
                 </div>
-
-                {/* Middle: Description & Tech */}
-                <div className="md:w-5/12 font-ui">
-                  <p className="text-xs md:text-sm text-text-secondary leading-relaxed mb-3">
-                    {project.description}
-                  </p>
-                  <p className="text-[11px] text-text-muted">
-                    {project.tech.join(' · ')}
-                  </p>
-                </div>
-
-                {/* Right: Action Link */}
-                <div className="md:w-2/12 flex md:justify-end">
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onSelectProject(project);
-                    }}
-                    className="inline-flex items-center gap-1 text-xs font-ui text-text-muted hover:text-accent-main transition-colors duration-200 group/link cursor-pointer"
-                  >
-                    View Project
-                    <svg
-                      className="w-3.5 h-3.5 transition-transform duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </AnimatedSection>
-          ))}
+              </AnimatedSection>
+            );
+          })}
         </div>
 
       </div>

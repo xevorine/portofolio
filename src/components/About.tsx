@@ -25,57 +25,93 @@ export const About: React.FC = () => {
         {/* Asymmetric Editorial Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          {/* Left Column: Big Narrative Paragraph */}
+          {/* Left Column: Big Narrative Paragraph in IDE Gutter */}
           <div className="lg:col-span-8">
             <AnimatedSection delay={0.1}>
-              <p className="text-lg md:text-xl text-text-secondary leading-relaxed font-ui mb-8">
-                I like building projects that connect technical ideas with practical use cases. My work usually starts from a real problem: moderating a WhatsApp group, helping a business record transactions, comparing ML models, or designing structured database systems.
-              </p>
-              <p className="text-sm md:text-base text-text-muted leading-relaxed font-ui">
-                Rather than chasing abstract engineering trends, I focus on building tools that solve immediate challenges. I believe software should be approachable, predictable, and clean, bridging functional database design with friendly user interfaces.
-              </p>
+              {/* File tab header */}
+              <div className="flex items-center gap-1.5 text-[10px] font-mono text-text-secondary bg-elevated-panel/40 px-3 py-1 rounded-t-md border-t border-x border-border-warm/60 w-fit select-none">
+                <span className="text-[#FFCC1F] font-bold text-[8px] select-none">MD</span>
+                <span>philosophy.md</span>
+              </div>
+              
+              {/* Code Editor body box */}
+              <div className="p-6 rounded-r-xl rounded-b-xl border border-border-warm/80 bg-soft-panel/20 backdrop-blur-xs flex gap-4 font-mono text-xs md:text-sm">
+                {/* Line Numbers Gutter */}
+                <div className="text-text-muted/30 select-none text-right pr-3 border-r border-border-warm/40 flex flex-col font-medium space-y-[1.12rem] md:space-y-[1.38rem] pt-0.5 select-none shrink-0">
+                  <span>01</span>
+                  <span>02</span>
+                  <span>03</span>
+                  <span>04</span>
+                  <span>05</span>
+                  <span>06</span>
+                </div>
+                
+                {/* Main Text Content */}
+                <div className="flex-1 font-ui text-text-secondary space-y-5">
+                  <p className="text-base md:text-lg leading-relaxed">
+                    I like building projects that connect technical ideas with practical use cases. My work usually starts from a real problem: moderating a WhatsApp group, helping a business record transactions, comparing ML models, or designing structured database systems.
+                  </p>
+                  <p className="text-sm md:text-base leading-relaxed text-text-muted">
+                    Rather than chasing abstract engineering trends, I focus on building tools that solve immediate challenges. I believe software should be approachable, predictable, and clean, bridging functional database design with friendly user interfaces.
+                  </p>
+                </div>
+              </div>
             </AnimatedSection>
           </div>
 
-          {/* Right Column: Focus Side Notes (No cards, just human notes) */}
+          {/* Right Column: Focus Side Notes (YAML Format) */}
           <div className="lg:col-span-4 lg:pl-6">
             <AnimatedSection delay={0.2}>
-              <div className="border-l border-border-warm pl-6 space-y-6 py-2">
+              <div className="border-l border-border-warm/60 pl-6 space-y-6 py-2 font-mono text-xs">
+                
                 <div>
-                  <h4 className="text-xs uppercase tracking-wider font-ui text-accent-main mb-1.5">
-                    Web Systems
-                  </h4>
-                  <p className="text-xs text-text-muted leading-normal font-ui">
-                    Creating secure transaction flows, clean APIs, and dashboard systems for small business needs.
-                  </p>
+                  <div className="text-accent-main font-semibold mb-1 flex items-center gap-1 select-none">
+                    <span>web_systems:</span>
+                  </div>
+                  <div className="pl-4 border-l border-border-warm/30 space-y-1">
+                    <div className="text-[9px] text-text-muted"><span className="text-accent-soft/75">focus:</span> "APIs & transaction flows"</div>
+                    <p className="text-[11px] text-text-secondary leading-normal font-ui">
+                      Creating secure transaction flows, clean APIs, and dashboard systems for small business needs.
+                    </p>
+                  </div>
                 </div>
 
                 <div>
-                  <h4 className="text-xs uppercase tracking-wider font-ui text-accent-fresh mb-1.5">
-                    AI Automation
-                  </h4>
-                  <p className="text-xs text-text-muted leading-normal font-ui">
-                    Integrating chat agents, moderation layers, and n8n schedules to skip manual admin work.
-                  </p>
+                  <div className="text-accent-fresh font-semibold mb-1 flex items-center gap-1 select-none">
+                    <span>ai_automation:</span>
+                  </div>
+                  <div className="pl-4 border-l border-border-warm/30 space-y-1">
+                    <div className="text-[9px] text-text-muted"><span className="text-accent-soft/75">focus:</span> "n8n, WAHA, & Gemini"</div>
+                    <p className="text-[11px] text-text-secondary leading-normal font-ui">
+                      Integrating chat agents, moderation layers, and n8n schedules to skip manual admin work.
+                    </p>
+                  </div>
                 </div>
 
                 <div>
-                  <h4 className="text-xs uppercase tracking-wider font-ui text-accent-soft mb-1.5">
-                    Data Structures
-                  </h4>
-                  <p className="text-xs text-text-muted leading-normal font-ui">
-                    Drafting clean, normalized SQL tables and ERDs to keep database operations fast and logical.
-                  </p>
+                  <div className="text-accent-soft font-semibold mb-1 flex items-center gap-1 select-none">
+                    <span>data_structures:</span>
+                  </div>
+                  <div className="pl-4 border-l border-border-warm/30 space-y-1">
+                    <div className="text-[9px] text-text-muted"><span className="text-accent-soft/75">focus:</span> "ERD & MySQL tables"</div>
+                    <p className="text-[11px] text-text-secondary leading-normal font-ui">
+                      Drafting clean, normalized SQL tables and ERDs to keep database operations fast and logical.
+                    </p>
+                  </div>
                 </div>
 
                 <div>
-                  <h4 className="text-xs uppercase tracking-wider font-ui text-accent-cool mb-1.5">
-                    UI Design
-                  </h4>
-                  <p className="text-xs text-text-muted leading-normal font-ui">
-                    Crafting uncluttered, responsive interfaces with clear hierarchies and smooth feedback.
-                  </p>
+                  <div className="text-accent-cool font-semibold mb-1 flex items-center gap-1 select-none">
+                    <span>ui_design:</span>
+                  </div>
+                  <div className="pl-4 border-l border-border-warm/30 space-y-1">
+                    <div className="text-[9px] text-text-muted"><span className="text-accent-soft/75">focus:</span> "Uncluttered interfaces"</div>
+                    <p className="text-[11px] text-text-secondary leading-normal font-ui">
+                      Crafting uncluttered, responsive interfaces with clear hierarchies and smooth feedback.
+                    </p>
+                  </div>
                 </div>
+
               </div>
             </AnimatedSection>
           </div>

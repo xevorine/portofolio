@@ -5,6 +5,7 @@ import { Hero } from './components/Hero';
 import { SelectedWork } from './components/SelectedWork';
 import { About } from './components/About';
 import { Tools } from './components/Tools';
+import { GitHubConsole } from './components/GitHubConsole';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { AccentSwitcher } from './components/AccentSwitcher';
@@ -84,6 +85,8 @@ function App() {
           ]}
           speed={30}
         />
+
+        <GitHubConsole />
 
         <SelectedWork onSelectProject={setSelectedProject} />
         <About />
